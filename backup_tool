@@ -1,0 +1,37 @@
+#!/bin/bash
+#
+# Command-Line tool to create backup and rotate them
+
+### --- VARIABLES --- ###
+
+config_dir="config"
+lib_dir="lib"
+
+### --- FUNCTIONS --- ###
+
+err()
+{
+  echo -e "\e[31m[$(date +'%Y-%m-%dT%H:%M:%S%z')]: $*\e[0m" >&2
+}
+
+import_sources_from_dir()
+{
+	local target_dir="${1}"
+
+	for file in "$target_dir"/*; do
+
+		if [[ -f "$file" ]]; then
+			echo "Sourcing $file"
+			source "$file"
+		fi
+
+	done
+}
+
+### --- MAIN CODE --- ###
+
+for target_dir in "$config_dir" "$lib_dir"; do
+	import_sources_from_dir "$target_dir"
+done
+
+validate_dirs "$backup_source_dir" "$backup_target_dir"
