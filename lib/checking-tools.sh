@@ -12,4 +12,14 @@ validate_dirs()
 	return 0
 }
 
+is_src_newer_than_trg()
+{
+	local source="${1}"
+	local target="${2}"
 
+	if [[ ! "$source" -nt "$target" ]]; then
+		return 1
+	fi
+
+	return 0
+}
