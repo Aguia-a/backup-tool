@@ -34,4 +34,4 @@ for target_dir in "$config_dir" "$lib_dir"; do
 	import_sources_from_dir "$target_dir"
 done
 
-validate_dirs "$backup_source_dir" "$backup_target_dir"
+make_rotation
