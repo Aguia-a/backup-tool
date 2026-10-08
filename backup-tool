@@ -11,7 +11,7 @@ lib_dir="lib"
 
 err()
 {
-  echo -e "\e[31m[$(date +'%Y-%m-%dT%H:%M:%S%z')]: $*\e[0m" >&2
+  echo -e "\033[31m[$(date +'%Y-%m-%dT%H:%M:%S%z')]: $*\033[0m" >&2
 }
 
 import_sources_from_dir()
@@ -30,18 +30,32 @@ import_sources_from_dir()
 
 ### --- MAIN CODE --- ###
 
+## Initial sourcing
 for target_dir in "$config_dir" "$lib_dir"; do
 	import_sources_from_dir "$target_dir"
 done
 
-# Create Backup
-
-if has_to_rotate; then
-
-	echo "Making Rotation..."
-	make_rotation
-
+## Initial Validation
+if ! validate_dirs "$backup_source_dir" "$backup_target_dir"; then
+	err "Some directories are not valid"
+	exit 1
 fi
 
-echo "Making backup"
-create_archive
+## Create Backup
+if theres_new_data; then
+
+	if main_archive_already_exists; then
+
+		echo "Doing Rotation..."
+		make_rotation
+
+	fi
+
+	echo "Making backup"
+	create_backup
+
+else
+
+	echo "No new data to backup"
+
+fi
