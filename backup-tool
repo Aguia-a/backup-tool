@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Command-Line tool to create backups and rotate them
+# Command-Line tool to create backups and rotate them.
 
 ### --- VARIABLES --- ###
 
@@ -10,11 +10,15 @@ LIB_DIR="lib"
 
 ### --- FUNCTIONS --- ###
 
+# err throws a error text in red to stderr,
+# accompanied by the passed arguments.
 err()
 {
   echo -e " \033[31m[ERR] [$(date +'%Y-%m-%dT%H:%M:%S%z')]: $*\033[0m" >&2
 }
 
+# import_sources_from_dir sources the passed
+# filepaths into the environment.
 import_sources_from_dir()
 {
 	local target_dir="${1}"
