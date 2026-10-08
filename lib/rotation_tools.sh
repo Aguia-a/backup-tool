@@ -1,3 +1,8 @@
+# rotation_tools.sh library contains tools for managing
+# backup archives rotation.
+#
+# make_rotation moves every backup archive up by one,
+# also removing archives that exceed the MAX_BACKUP_NUMBER variable.
 make_rotation()
 {
     archives_located=( $(find "$BACKUP_TARGET_DIR" -name "$BACKUP_TARGET_FILENAME*.tar.gz" | sort -V ) )
