@@ -34,4 +34,14 @@ for target_dir in "$config_dir" "$lib_dir"; do
 	import_sources_from_dir "$target_dir"
 done
 
-make_rotation
+# Create Backup
+
+if has_to_rotate; then
+
+	echo "Making Rotation..."
+	make_rotation
+
+fi
+
+echo "Making backup"
+create_archive
