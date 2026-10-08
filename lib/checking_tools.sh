@@ -24,8 +24,8 @@ validate_dirs()
 
 theres_new_data()
 {
-	new_data="$(find $backup_source_dir -name $backup_source_filetype \
-	-newer $backup_target_dir/$backup_target_filename.tar.gz)"
+	new_data="$(find $BACKUP_SOURCE_DIR -name $BACKUP_SOURCE_FILETYPE \
+	-newer $BACKUP_TARGET_DIR/$BACKUP_TARGET_FILENAME.tar.gz)"
 
 	if [[ -z "$new_data" ]]; then
 		echo "Vazio"
@@ -37,7 +37,7 @@ theres_new_data()
 
 main_archive_already_exists()
 {
-    if [[ ! -f "$backup_target_dir/$backup_target_filename.tar.gz" ]]; then
+    if [[ ! -f "$BACKUP_TARGET_DIR/$BACKUP_TARGET_FILENAME.tar.gz" ]]; then
         return 1
     fi
 

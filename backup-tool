@@ -36,7 +36,7 @@ for target_dir in "$config_dir" "$lib_dir"; do
 done
 
 ## Initial Validation
-if ! validate_dirs "$backup_source_dir" "$backup_target_dir"; then
+if ! validate_dirs "$BACKUP_SOURCE_DIR" "$BACKUP_TARGET_DIR"; then
 	err "Some directories are not valid"
 	exit 1
 fi
