@@ -21,7 +21,8 @@ make_rotation()
         else
 
             mv "${archives_located[index]}" \
-                "$backup_target_dir/$backup_target_filename.$index.tar.gz"
+               "$backup_target_dir/$backup_target_filename.$(( index + 1 )).tar.gz"
+            
 
         fi
 
