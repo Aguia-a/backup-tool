@@ -1,12 +1,3 @@
-has_to_rotate()
-{
-    if [[ ! -f "$backup_target_dir/$backup_target_filename.tar.gz" ]]; then
-        return 1
-    fi
-
-    return 0
-}
-
 make_rotation()
 {
     archives_located=( $(find "$backup_target_dir" -name "$backup_target_filename*.tar.gz" | sort -V ) )
