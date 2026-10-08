@@ -1,17 +1,18 @@
 #!/bin/bash
 #
-# Command-Line tool to create backup and rotate them
+# Command-Line tool to create backups and rotate them
 
 ### --- VARIABLES --- ###
 
-config_dir="config"
-lib_dir="lib"
+PROGRAM_NAME="$(basename $0)"
+CONFIG_DIR="config"
+LIB_DIR="lib"
 
 ### --- FUNCTIONS --- ###
 
 err()
 {
-  echo -e "\033[31m[$(date +'%Y-%m-%dT%H:%M:%S%z')]: $*\033[0m" >&2
+  echo -e " \033[31m[ERR] [$(date +'%Y-%m-%dT%H:%M:%S%z')]: $*\033[0m" >&2
 }
 
 import_sources_from_dir()
@@ -31,7 +32,7 @@ import_sources_from_dir()
 ### --- MAIN CODE --- ###
 
 ## Initial sourcing
-for target_dir in "$config_dir" "$lib_dir"; do
+for target_dir in "$CONFIG_DIR" "$LIB_DIR"; do
 	import_sources_from_dir "$target_dir"
 done
 
