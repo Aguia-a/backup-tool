@@ -35,7 +35,6 @@ theres_new_data()
 	-newer $BACKUP_TARGET_DIR/$BACKUP_TARGET_FILENAME.tar.gz)"
 
 	if [[ -z "$new_data" ]]; then
-		echo "Vazio"
 		return 1
 	fi
 
