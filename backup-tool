@@ -26,7 +26,6 @@ import_sources_from_dir()
 	for file in "$target_dir"/*; do
 
 		if [[ -f "$file" ]]; then
-			echo "Sourcing $file"
 			source "$file"
 		fi
 
@@ -47,20 +46,16 @@ if ! validate_dirs "$BACKUP_SOURCE_DIR" "$BACKUP_TARGET_DIR"; then
 fi
 
 ## Create Backup
-if theres_new_data; then
+if ! main_archive_already_exists; then
 
-	if main_archive_already_exists; then
-
-		echo "Doing Rotation..."
-		make_rotation
-
-	fi
-
-	echo "Making backup"
 	create_backup
 
 else
 
-	echo "No new data to backup"
+	if theres_new_data; then
+
+		make_rotation
+
+	fi
 
 fi
