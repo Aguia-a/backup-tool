@@ -31,9 +31,9 @@ validate_dirs()
 # newer than the last backup.
 theres_new_data()
 {
-	new_data="$(find $BACKUP_SOURCE_DIR -name $BACKUP_SOURCE_FILETYPE \
-	-newer $BACKUP_TARGET_DIR/$BACKUP_TARGET_FILENAME.tar.gz)"
-
+	new_data="$(find "$BACKUP_SOURCE_DIR" -name "$BACKUP_SOURCE_FILETYPE" \
+	-newer "$BACKUP_TARGET_DIR/$BACKUP_TARGET_FILENAME.tar.gz")"
+	
 	if [[ -z "$new_data" ]]; then
 		return 1
 	fi
