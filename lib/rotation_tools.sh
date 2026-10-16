@@ -6,7 +6,7 @@
 make_rotation()
 {
     archives_located=( $(find "$BACKUP_TARGET_DIR" -name "$BACKUP_TARGET_FILENAME*.tar.gz" | sort -V ) )
-    archives_length=${#archives_located[@]}
+    archives_length="${#archives_located[@]}"
 
     for (( index=archives_length-1; index >= 0; index--)); do
 
@@ -18,7 +18,6 @@ make_rotation()
 
             mv "${archives_located[index]}" \
                "$BACKUP_TARGET_DIR/$BACKUP_TARGET_FILENAME.$(( index + 1 )).tar.gz"
-            
 
         fi
 
