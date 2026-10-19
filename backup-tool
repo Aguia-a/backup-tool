@@ -55,6 +55,7 @@ else
 	if theres_new_data; then
 
 		make_rotation
+		create_backup
 
 	fi
 
